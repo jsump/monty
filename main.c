@@ -8,14 +8,21 @@
 int main(int argc, char **argv)
 {
 	FILE *fp;
+	int n;
 	char *line = NULL, *token;
-	size_t len = 0;
+	size_t len = 1024;
 	unsigned int line_number;
-	
-	stack_t *stack = NULL;
-	
-	line_number = 0;
 
+	stack_t *stack = NULL;
+
+	line_number = 0;
+	line = (char *)malloc(len);
+
+	if (line == NULL)
+	{
+		fprintf(stderr, "Error: Memory allocation for line failed\n");
+		exit(EXIT_FAILURE);
+	}
 	if (argc != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
@@ -37,22 +44,25 @@ int main(int argc, char **argv)
 		{
 			token = strtok(NULL, " \n");
 
-			if (!token || !isdigit(*token))
+			if (!token || (!isdigit(*token) && *token != '-' && *token != '+'))
 			{
 				fprintf(stderr, "L%d: usage: push integer\n", line_number);
 				exit(EXIT_FAILURE);
 			}
-			push(atoi(token));
+			n = atoi(token);
+			if (n != 0 || *token == '0')
+				push(&stack, n);
 		}
 		else if (strcmp(token, "pall") == 0)
 			pall(stack);
 		else
 		{
 			fprintf(stderr, "L%d: unknown instruction %s\n", line_number, token);
+			fflush(stderr);
 			exit(EXIT_FAILURE);
 		}
 	}
-	free(line);
 	fclose(fp);
+	free(line);
 	return (EXIT_SUCCESS);
 }
