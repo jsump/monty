@@ -1,6 +1,5 @@
 #include "monty.h"
 
-stack_t *stack = NULL;
 void process_inst(char *token, stack_t **stack, unsigned int line_number);
 void process_file(FILE *fp, stack_t **stack);
 
