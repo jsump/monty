@@ -9,7 +9,12 @@ void pall(stack_t *stack)
 
 	while (curr)
 	{
-		printf("%d\n", curr->n);
+		if (curr->print_flag)
+		{
+
+			printf("%d\n", curr->n);
+			fflush(stdout);
+		}
 		curr = curr->next;
 	}
 }

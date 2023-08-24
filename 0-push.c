@@ -1,19 +1,21 @@
 #include "monty.h"
+
 /**
- * push - pushes ad eleent to the stack
+ * push - pushes to stack
  * @stack: stack of elements
- * @n: integer to be pushed
+ * @n: value to be pushed
  */
 void push(stack_t **stack, int n)
 {
-	stack_t *new_node = malloc(sizeof(stack_t));
+	stack_t *new_node;
+
+	new_node = malloc(sizeof(stack_t));
 
 	if (!new_node)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
-
 	new_node->n = n;
 	new_node->prev = NULL;
 
@@ -23,6 +25,10 @@ void push(stack_t **stack, int n)
 		(*stack)->prev = new_node;
 	}
 	else
+	{
 		new_node->next = NULL;
+	}
 	*stack = new_node;
+
+	new_node->print_flag = 1;
 }
