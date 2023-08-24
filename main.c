@@ -65,6 +65,9 @@ void process_inst(char *token, stack_t **stack, unsigned int line_number)
 		add(stack, line_number);
 	else if (strcmp(token, "nop") == 0)
 	{
+	}
+	else
+	{
 		fprintf(stderr, "L%d: unknown instruction %s\n", line_number, token);
 		fflush(stderr);
 		exit(EXIT_FAILURE);
@@ -94,6 +97,9 @@ void process_file(FILE *fp, stack_t **stack)
 	{
 		line_number++;
 		token = strtok(line, " \n");
+
+		if (token == NULL || token[0] == '#')
+			continue;
 		process_inst(token, stack, line_number);
 	}
 	free(line);
