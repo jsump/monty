@@ -51,7 +51,7 @@ void process_inst(char *token, stack_t **stack, unsigned int line_number)
 			exit(EXIT_FAILURE);
 		}
 		n = strtol(token, &endptr, 10);
-		if (*endptr != '\0' ||errno == EINVAL)
+		if (*endptr != '\0' || errno == EINVAL)
 		{
 			fprintf(stderr, "L%d: usage: push integer\n", line_number);
 			exit(EXIT_FAILURE);
