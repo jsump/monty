@@ -14,6 +14,7 @@ void pall(stack_t *stack)
 
 			printf("%d\n", curr->n);
 			fflush(stdout);
+			curr->print_flag = 0;
 		}
 		curr = curr->next;
 	}

@@ -1,5 +1,6 @@
 #include "monty.h"
 
+stack_t *stack = NULL;
 void process_inst(char *token, stack_t **stack, unsigned int line_number);
 void process_file(FILE *fp, stack_t **stack);
 
@@ -27,6 +28,7 @@ int main(int argc, char **argv)
 		exit(EXIT_FAILURE);
 	}
 	process_file(fp, &stack);
+	free_the_stack(stack);
 	return (EXIT_SUCCESS);
 }
 
