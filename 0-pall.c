@@ -1,4 +1,4 @@
-#include "main.h"
+#include "monty.h"
 /**
  * pall - prints all the values in a stack
  * @stack: stack of elememts

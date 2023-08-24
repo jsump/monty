@@ -1,4 +1,4 @@
-#include "main.h"
+#include "monty.h"
 /**
  * push - pushes ad eleent to the stack
  * @stack: stack of elements
@@ -22,7 +22,7 @@ void push(stack_t **stack, int n)
 		new_node->next = *stack;
 		(*stack)->prev = new_node;
 	}
-	else 
+	else
 		new_node->next = NULL;
 	*stack = new_node;
 }

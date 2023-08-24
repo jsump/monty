@@ -1,5 +1,5 @@
-#ifndef MAIN_H
-#define MAIN_H
+#ifndef MONTY_H
+#define MONTY_H
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -41,5 +41,10 @@ typedef struct instruction_s
 
 void push(stack_t **stack, int n);
 void pall(stack_t *stack);
+void pint(stack_t **stack, unsigned int line_number);
+void pop(stack_t **stack, unsigned int line_number);
+void swap(stack_t **stack, unsigned int line_number);
+void add(stack_t **stack, unsigned int line_number);
+void nop(void);
 
-#endif /* MAIN_H */
+#endif /* MONTY_H */
