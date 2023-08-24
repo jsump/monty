@@ -11,10 +11,8 @@ void pall(stack_t *stack)
 	{
 		if (curr->print_flag)
 		{
-
 			printf("%d\n", curr->n);
 			fflush(stdout);
-			curr->print_flag = 0;
 		}
 		curr = curr->next;
 	}
