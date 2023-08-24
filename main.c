@@ -39,6 +39,7 @@ int main(int argc, char **argv)
 void process_inst(char *token, stack_t **stack, unsigned int line_number)
 {
 	int n;
+	char *endptr;
 
 	if (strcmp(token, "push") == 0)
 	{
@@ -49,9 +50,13 @@ void process_inst(char *token, stack_t **stack, unsigned int line_number)
 			fprintf(stderr, "L%d: usage: push integer\n", line_number);
 			exit(EXIT_FAILURE);
 		}
-		n = atoi(token);
-		if (n != 0 || *token == '0')
-			push(stack, n);
+		n = strtol(token, &endptr, 10);
+		if (*endptr != '\0' ||errno == EINVAL)
+		{
+			fprintf(stderr, "L%d: usage: push integer\n", line_number);
+			exit(EXIT_FAILURE);
+		}
+		push(stack, n);
 	}
 	else if (strcmp(token, "pall") == 0)
 		pall(*stack);
@@ -69,7 +74,6 @@ void process_inst(char *token, stack_t **stack, unsigned int line_number)
 	else
 	{
 		fprintf(stderr, "L%d: unknown instruction %s\n", line_number, token);
-		fflush(stderr);
 		exit(EXIT_FAILURE);
 	}
 }
